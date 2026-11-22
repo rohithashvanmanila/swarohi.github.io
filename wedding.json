@@ -1,7 +1,8 @@
 {
   "site": {
-    "name": "SWAROHI",
-    "description": "The wedding celebration of Swathi and Rohithashva"
+    "name": "Swarohi",
+    "description": "A star and sacred fire becoming one — the wedding celebration of Swathi and Rohithashva.",
+    "logo": "assets/logo.svg"
   },
   "couple": {
     "bride": "Swathi",
@@ -22,6 +23,6 @@
     "note": "Replace the RSVP email in wedding.json with the email address where you want replies."
   },
   "customization": {
-    "instructions": "Edit venue, address, time and RSVP email in this file. Keep wedding.json in the same folder as index.html."
+    "instructions": "Edit venue, address, time, RSVP email, logo path and ISO date in this file. Keep wedding.json in the same folder as index.html."
   }
 }

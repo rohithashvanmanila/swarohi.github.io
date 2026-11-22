@@ -3,157 +3,112 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f1e8">
-  <meta name="description" content="Celebrate the wedding of Swathi and Rohithashva on May 9, 2027.">
-  <title>Swathi & Rohithashva — 09.05.2027</title>
+  <meta name="theme-color" content="#171613">
+  <meta name="description" content="The wedding celebration of Swathi and Rohithashva.">
+  <title>SwaRohi ♥ 09 May 2027</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="wordmark" href="#home" aria-label="Swarohi home">swarohi<span>.</span></a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Swarohi home">Swarohi<span class="dot turmeric"></span><span class="dot kumkum"></span></a>
     <nav aria-label="Main navigation">
-      <a href="#story">Our story</a>
-      <a href="#details">The celebration</a>
-      <a href="#rsvp" class="nav-rsvp">RSVP</a>
+      <a href="#meaning">Our meaning</a>
+      <a href="#celebration">Celebration</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-art" aria-hidden="true">
-        <span class="sun"></span><span class="line line-one"></span><span class="line line-two"></span>
-        <span class="flower flower-one">✳</span><span class="flower flower-two">✳</span>
-      </div>
-      <div class="hero-content">
-        <p class="eyebrow">A celebration of love & togetherness</p>
-        <p class="small-intro">With the blessings of our families</p>
-        <h1>Swathi <span class="ampersand">&</span><br>Rohithashva</h1>
-        <p class="hero-date">SUNDAY <i>·</i> 09 MAY 2027</p>
-        <a class="round-link" href="#details" aria-label="Discover the celebration">↓</a>
-      </div>
-      <p class="vertical-note">SAVE THE DATE — 09.05.2027</p>
+      <div class="celestial-symbol" aria-hidden="true"><span>✦</span><i></i></div>
+      <p class="kicker">A star meets sacred fire</p>
+      <div class="hero-monogram" aria-hidden="true">स्वा <span>×</span> रोहि</div>
+      <h1>Swathi <i>&amp;</i> Rohithashva</h1>
+      <p class="hero-theme">A luminous beginning, written in starlight and flame.</p>
+      <p class="hero-date" id="hero-date">Sunday · 09 May 2027</p>
+      <a class="scroll-cue" href="#meaning">Discover our story <span>↓</span></a>
     </section>
 
-    <section class="intro section" id="story">
-      <p class="eyebrow">Two hearts, one beautiful beginning</p>
-      <h2>And so, our <em>forever</em><br>begins.</h2>
-      <p class="intro-copy">A new chapter, a shared journey, and a day made more special with the people we love. We would be delighted to have you with us as we begin this forever together.</p>
-      <div class="ornament">✳ <span>✳</span> ✳</div>
-    </section>
+    <section class="meaning section" id="meaning">
+      <div class="meaning-copy">
+        <p class="kicker">The meaning of Swarohi</p>
+        <h2>Two individuals,<br><em>becoming one.</em></h2>
+        <p class="lead">Swarohi is the shared name for two individuals who become each other's own, growing together and flourishing as one.</p>
+      </div>
 
-    <section class="countdown-section">
-      <div class="countdown-inner">
-        <p class="eyebrow">The countdown is on</p>
-        <h2>Until we say <em>“I do”</em></h2>
-        <div class="countdown" aria-live="polite">
-          <div><strong id="days">---</strong><span>Days</span></div>
-          <div><strong id="hours">--</strong><span>Hours</span></div>
-          <div><strong id="minutes">--</strong><span>Minutes</span></div>
-          <div><strong id="seconds">--</strong><span>Seconds</span></div>
+      <article class="meaning-card" aria-labelledby="meaning-card-title">
+        <div class="card-logo-wrap">
+          <img class="card-logo" id="card-logo" src="assets/logo.svg" alt="Swarohi monogram">
         </div>
-        <p class="countdown-date">09 / 05 / 2027</p>
+        <p class="card-name" id="site-name">Swarohi<span class="dot turmeric"></span><span class="dot kumkum"></span></p>
+        <p class="card-script" lang="kn">ಸ್ವಾರೋಹಿ</p>
+        <div class="card-rule"></div>
+        <h3 id="meaning-card-title">Becoming each other's own,<br>growing together forever.</h3>
+        <p class="card-couple" id="card-couple">Swathi <span>♥</span> Rohithashva</p>
+        <p class="card-date" id="card-date">09 · 05 · 2027</p>
+      </article>
+    </section>
+
+    <section class="countdown-section" aria-label="Wedding countdown">
+      <p class="kicker">The orbit begins</p>
+      <h2>Until our <em>constellations</em> align</h2>
+      <div class="countdown" aria-live="polite">
+        <div><strong id="days">---</strong><span>Days</span></div>
+        <div><strong id="hours">--</strong><span>Hours</span></div>
+        <div><strong id="minutes">--</strong><span>Minutes</span></div>
+        <div><strong id="seconds">--</strong><span>Seconds</span></div>
       </div>
     </section>
 
-    <section class="details section" id="details">
-      <p class="eyebrow">Join us for the celebration</p>
-      <h2>A day to <em>remember</em></h2>
+    <section class="celebration section" id="celebration">
+      <p class="kicker">Save the date</p>
+      <h2>Join us for a day<br>of <em>celebration.</em></h2>
       <div class="details-grid">
-        <article class="detail-card">
-          <span class="detail-icon">✳</span>
-          <p class="detail-label">The date</p>
-          <h3>Sunday, 9 May 2027</h3>
-          <p>We can't wait to celebrate this special day with you.</p>
-        </article>
-        <article class="detail-card">
-          <span class="detail-icon">⌖</span>
-          <p class="detail-label">The venue</p>
-          <h3 id="venue-name">Venue details coming soon</h3>
-          <p id="venue-address">Location and directions will be shared here.</p>
-        </article>
-        <article class="detail-card">
-          <span class="detail-icon">◷</span>
-          <p class="detail-label">The time</p>
-          <h3 id="event-time">Timing to be announced</h3>
-          <p>Please check back for the complete schedule.</p>
-        </article>
+        <article><p>The date</p><h3 id="event-date">Sunday, 09 May 2027</h3></article>
+        <article><p>The place</p><h3 id="venue-name">Sangama, Belthangady</h3><span id="venue-address"></span></article>
+        <article><p>The time</p><h3 id="event-time">Timing to be announced</h3></article>
       </div>
     </section>
 
-    <section class="rsvp-section" id="rsvp">
-      <div class="rsvp-decoration">S <span>&</span> R</div>
-      <p class="eyebrow">Your presence is our present</p>
-      <h2>Will you join<br>our <em>happily ever after?</em></h2>
-      <p class="rsvp-copy">Let us know if you can make it. We look forward to celebrating with you!</p>
-      <form id="rsvp-form">
-        <label for="guest-name">Your name</label>
-        <input id="guest-name" name="name" type="text" placeholder="Enter your name" required>
-        <label for="guest-count">Number of guests</label>
-        <select id="guest-count" name="guests">
-          <option value="1">1 guest</option><option value="2">2 guests</option>
-          <option value="3">3 guests</option><option value="4">4 guests</option>
-          <option value="5">5 guests</option><option value="6">6 guests</option>
-        </select>
-        <label for="attendance">Will you be joining us?</label>
-        <select id="attendance" name="attendance">
-          <option value="Joyfully accepts">Joyfully accepts</option>
-          <option value="Regretfully declines">Regretfully declines</option>
-        </select>
-        <button type="submit">Send your RSVP <span>↗</span></button>
-      </form>
-      <p class="rsvp-note" id="rsvp-note">RSVP submission will open your email app.</p>
-    </section>
   </main>
 
-  <footer>
-    <a class="wordmark" href="#home">swarohi<span>.</span></a>
-    <p>Made with love · Swathi & Rohithashva</p>
-    <p class="footer-date">09.05.2027</p>
-  </footer>
+  <footer><span class="footer-brand" id="footer-brand">Swarohi<span class="dot turmeric"></span><span class="dot kumkum"></span></span><span>Swathi &amp; Rohithashva</span><span id="footer-date">09.05.2027</span></footer>
 
   <script>
-    // Wedding details are loaded from wedding.json so you can update them without editing this page.
     let weddingConfig = {};
+    const pad = (number, digits = 2) => String(number).padStart(digits, "0");
+    function setText(id, value) { const element = document.getElementById(id); if (element && value) element.textContent = value; }
+    function updateCountdown(isoDate) {
+      const distance = new Date(`${isoDate}T00:00:00+05:30`).getTime() - Date.now();
+      const values = distance <= 0 ? [0, 0, 0, 0] : [Math.floor(distance / 86400000), Math.floor((distance % 86400000) / 3600000), Math.floor((distance % 3600000) / 60000), Math.floor((distance % 60000) / 1000)];
+      ["days", "hours", "minutes", "seconds"].forEach((id, index) => setText(id, pad(values[index], index === 0 ? 3 : 2)));
+    }
     fetch("wedding.json")
       .then(response => response.json())
       .then(config => {
         weddingConfig = config;
-        document.title = `${config.couple.bride} & ${config.couple.groom} — ${config.date.display}`;
-        document.getElementById("venue-name").textContent = config.event.venue || "Venue details coming soon";
-        document.getElementById("venue-address").textContent = config.event.address || "Location and directions will be shared here.";
-        document.getElementById("event-time").textContent = config.event.time || "Timing to be announced";
-        document.getElementById("rsvp-note").textContent = config.rsvp.note || "RSVP submission will open your email app.";
+        const { bride, groom } = config.couple;
+        const date = config.date;
+        document.title = `${bride} & ${groom} — ${date.display}`;
+        const siteName = `${config.site.name.charAt(0).toUpperCase()}${config.site.name.slice(1).toLowerCase()}`;
+        const styledBrand = `${siteName}<span class="dot turmeric"></span><span class="dot kumkum"></span>`;
+        document.getElementById("site-name").innerHTML = styledBrand;
+        document.getElementById("footer-brand").innerHTML = styledBrand;
+        setText("card-couple", `${bride} ♥ ${groom}`);
+        setText("hero-date", `Sunday · ${date.display}`);
+        setText("event-date", `Sunday, ${date.display}`);
+        setText("footer-date", date.iso.split("-").reverse().join("."));
+        setText("card-date", date.iso.split("-").reverse().join(" · "));
+        setText("venue-name", config.event.venue);
+        setText("venue-address", config.event.address);
+        setText("event-time", config.event.time);
+        if (config.site.logo) document.getElementById("card-logo").src = config.site.logo;
+        updateCountdown(date.iso);
+        setInterval(() => updateCountdown(date.iso), 1000);
       })
-      .catch(() => { /* The page still works with its built-in placeholder details. */ });
-
-    const weddingDate = new Date("2027-05-09T00:00:00+05:30").getTime();
-    function updateCountdown() {
-      const distance = weddingDate - Date.now();
-      const values = distance <= 0
-        ? [0, 0, 0, 0]
-        : [Math.floor(distance / 86400000), Math.floor((distance % 86400000) / 3600000),
-           Math.floor((distance % 3600000) / 60000), Math.floor((distance % 60000) / 1000)];
-      ["days", "hours", "minutes", "seconds"].forEach((id, i) => {
-        document.getElementById(id).textContent = String(values[i]).padStart(i === 0 ? 3 : 2, "0");
-      });
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    document.getElementById("rsvp-form").addEventListener("submit", event => {
-      event.preventDefault();
-      const form = new FormData(event.currentTarget);
-      const name = form.get("name");
-      const guests = form.get("guests");
-      const attendance = form.get("attendance");
-      const email = weddingConfig.rsvp?.email || "YOUR-EMAIL@example.com";
-      const subject = encodeURIComponent(`Wedding RSVP — ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nGuests: ${guests}\nAttendance: ${attendance}`);
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    });
+      .catch(() => { updateCountdown("2027-05-09"); setInterval(() => updateCountdown("2027-05-09"), 1000); });
   </script>
 </body>
 </html>
