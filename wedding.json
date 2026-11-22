@@ -1,0 +1,27 @@
+{
+  "site": {
+    "name": "swarohi.in",
+    "description": "The wedding celebration of Swathi and Rohithashva"
+  },
+  "couple": {
+    "bride": "Swathi",
+    "groom": "Rohithashva"
+  },
+  "date": {
+    "iso": "2027-05-09",
+    "display": "09 May 2027",
+    "timezone": "Asia/Kolkata"
+  },
+  "event": {
+    "venue": "",
+    "address": "",
+    "time": ""
+  },
+  "rsvp": {
+    "email": "YOUR-EMAIL@example.com",
+    "note": "Replace the RSVP email in wedding.json with the email address where you want replies."
+  },
+  "customization": {
+    "instructions": "Edit venue, address, time and RSVP email in this file. Keep wedding.json in the same folder as index.html."
+  }
+}
