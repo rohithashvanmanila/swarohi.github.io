@@ -77,39 +77,6 @@
 
   <footer><span class="footer-brand" id="footer-brand">Swarohi<span class="dot turmeric"></span><span class="dot kumkum"></span></span><span>Swathi &amp; Rohithashva</span><span id="footer-date">09.05.2027</span></footer>
 
-  <script>
-    let weddingConfig = {};
-    const pad = (number, digits = 2) => String(number).padStart(digits, "0");
-    function setText(id, value) { const element = document.getElementById(id); if (element && value) element.textContent = value; }
-    function updateCountdown(isoDate) {
-      const distance = new Date(`${isoDate}T00:00:00+05:30`).getTime() - Date.now();
-      const values = distance <= 0 ? [0, 0, 0, 0] : [Math.floor(distance / 86400000), Math.floor((distance % 86400000) / 3600000), Math.floor((distance % 3600000) / 60000), Math.floor((distance % 60000) / 1000)];
-      ["days", "hours", "minutes", "seconds"].forEach((id, index) => setText(id, pad(values[index], index === 0 ? 3 : 2)));
-    }
-    fetch("wedding.json")
-      .then(response => response.json())
-      .then(config => {
-        weddingConfig = config;
-        const { bride, groom } = config.couple;
-        const date = config.date;
-        document.title = `${bride} & ${groom} — ${date.display}`;
-        const siteName = `${config.site.name.charAt(0).toUpperCase()}${config.site.name.slice(1).toLowerCase()}`;
-        const styledBrand = `${siteName}<span class="dot turmeric"></span><span class="dot kumkum"></span>`;
-        document.getElementById("site-name").innerHTML = styledBrand;
-        document.getElementById("footer-brand").innerHTML = styledBrand;
-        setText("card-couple", `${bride} ♥ ${groom}`);
-        setText("hero-date", `Sunday · ${date.display}`);
-        setText("event-date", `Sunday, ${date.display}`);
-        setText("footer-date", date.iso.split("-").reverse().join("."));
-        setText("card-date", date.iso.split("-").reverse().join(" · "));
-        setText("venue-name", config.event.venue);
-        setText("venue-address", config.event.address);
-        setText("event-time", config.event.time);
-        if (config.site.logo) document.getElementById("card-logo").src = config.site.logo;
-        updateCountdown(date.iso);
-        setInterval(() => updateCountdown(date.iso), 1000);
-      })
-      .catch(() => { updateCountdown("2027-05-09"); setInterval(() => updateCountdown("2027-05-09"), 1000); });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
