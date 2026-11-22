@@ -1,6 +1,6 @@
 // Edit these values when the wedding details are final.
 const wedding = {
-  siteName: "SwaRohi",
+  siteName: "Swarohi",
   bride: "Swathi",
   groom: "Rohithashva",
   isoDate: "2027-05-09",
