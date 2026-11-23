@@ -16,6 +16,161 @@ const setText = (id, value) => {
   if (element && value) element.textContent = value;
 };
 
+function initHeroDotGrid() {
+  const canvas = document.querySelector(".hero-dot-grid");
+  const hero = document.getElementById("home");
+  const context = canvas?.getContext("2d");
+  if (!canvas || !hero || !context) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const dots = [];
+  const ripples = [];
+  const pointer = { x: -1000, y: -1000, previousX: -1000, previousY: -1000, speed: 0, lastMovedAt: 0, active: false };
+  const startedAt = performance.now();
+  let nextCenterRippleAt = startedAt + 5200;
+  let width = 0;
+  let height = 0;
+  let animationFrame;
+  let isVisible = true;
+
+  function addCenterRipple(now) {
+    ripples.push({ x: width / 2, y: height / 2, startedAt: now, duration: 1900, radius: 440 });
+  }
+
+  function resize() {
+    const rect = hero.getBoundingClientRect();
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    dots.length = 0;
+    const spacing = width < 600 ? 28 : 35;
+    for (let row = 0, y = spacing / 2; y < height; row += 1, y += spacing) {
+      for (let col = 0, x = spacing / 2; x < width; col += 1, x += spacing) {
+        const duration = 9000 + Math.random() * 3000;
+        const phaseJitter = (Math.random() - 0.5) * 0.16;
+        dots.push({
+          x,
+          y,
+          // A staggered diagonal phase makes the shimmer travel across the grid.
+          phase: (((col * 300 - row * 110 + phaseJitter * 1000) / duration) % 1 + 1) % 1,
+          duration,
+          glitterPhase: Math.random() * Math.PI * 2,
+          glitterSpeed: 0.00035 + Math.random() * 0.00065,
+          offsetX: 0,
+          offsetY: 0,
+          velocityX: 0,
+          velocityY: 0
+        });
+      }
+    }
+    draw(performance.now());
+  }
+
+  function draw(now) {
+    context.clearRect(0, 0, width, height);
+    const elapsed = now - startedAt;
+    pointer.speed *= 0.86;
+
+    if (!reducedMotion && now >= nextCenterRippleAt) {
+      addCenterRipple(now);
+      nextCenterRippleAt = now + 7500 + Math.random() * 5500;
+    }
+
+    // Ripples travel through the grid by briefly pushing dots outward.
+    for (let i = ripples.length - 1; i >= 0; i -= 1) {
+      const ripple = ripples[i];
+      if (now - ripple.startedAt >= ripple.duration) ripples.splice(i, 1);
+    }
+
+    for (const dot of dots) {
+      let targetX = 0;
+      let targetY = 0;
+      let rippleStrength = 0;
+      if (!reducedMotion) {
+        for (const ripple of ripples) {
+          const age = (now - ripple.startedAt) / ripple.duration;
+          const dx = dot.x - ripple.x;
+          const dy = dot.y - ripple.y;
+          const distance = Math.hypot(dx, dy);
+          const front = age * ripple.radius;
+          const band = Math.exp(-(((distance - front) / 26) ** 2)) * (1 - age);
+          if (distance > 0 && band > 0.005) {
+            const push = band * (ripple.radius > 400 ? 22 : 19);
+            targetX += (dx / distance) * push;
+            targetY += (dy / distance) * push;
+            rippleStrength = Math.max(rippleStrength, band);
+          }
+        }
+      }
+      dot.velocityX = (dot.velocityX + (targetX - dot.offsetX) * 0.065) * 0.84;
+      dot.velocityY = (dot.velocityY + (targetY - dot.offsetY) * 0.065) * 0.84;
+      dot.offsetX += dot.velocityX;
+      dot.offsetY += dot.velocityY;
+
+      const waveProgress = reducedMotion ? 0 : (elapsed / dot.duration + dot.phase) % 1;
+      const wave = reducedMotion ? 0 : Math.pow(Math.max(0, 1 - Math.abs(waveProgress - 0.5) / 0.16), 2);
+      const glitter = reducedMotion ? 0 : Math.max(0, Math.sin(now * dot.glitterSpeed + dot.glitterPhase)) ** 18;
+      const distance = Math.hypot(dot.x + dot.offsetX - pointer.x, dot.y + dot.offsetY - pointer.y);
+      const motionFade = Math.max(0, 1 - (now - pointer.lastMovedAt) / 180);
+      const motionGlow = hasFinePointer && pointer.active ? Math.min(pointer.speed / 8, 1) * motionFade : 0;
+      const glow = motionGlow * Math.max(0, 1 - distance / 235);
+      const opacity = 0.16 + wave * 0.3 + glitter * 0.15 + glow * 0.27 + rippleStrength * 0.38;
+      context.beginPath();
+      context.arc(dot.x + dot.offsetX, dot.y + dot.offsetY, 0.9 + wave * 0.55 + glitter * 0.3 + glow * 0.45 + rippleStrength * 0.6, 0, Math.PI * 2);
+      context.fillStyle = `rgba(255, ${glow > 0.12 || wave > 0.45 || rippleStrength > 0.2 ? 218 : 239}, ${glow > 0.12 || wave > 0.45 || rippleStrength > 0.2 ? 126 : 205}, ${opacity})`;
+      context.fill();
+    }
+
+    if (!reducedMotion && isVisible) animationFrame = requestAnimationFrame(draw);
+  }
+
+  if (hasFinePointer) {
+    hero.addEventListener("pointermove", (event) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.previousX = pointer.x;
+      pointer.previousY = pointer.y;
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.speed = Math.hypot(pointer.x - pointer.previousX, pointer.y - pointer.previousY);
+      pointer.lastMovedAt = performance.now();
+      pointer.active = true;
+    });
+    hero.addEventListener("pointerleave", () => { pointer.active = false; });
+
+    const orbitCircles = hero.querySelectorAll(".orbit-star, .orbit-flame, .orbit-core");
+    orbitCircles.forEach((circle) => {
+      circle.addEventListener("pointerenter", () => {
+        const circleRect = circle.getBoundingClientRect();
+        const canvasRect = canvas.getBoundingClientRect();
+        ripples.push({
+          x: circleRect.left + circleRect.width / 2 - canvasRect.left,
+          y: circleRect.top + circleRect.height / 2 - canvasRect.top,
+          startedAt: performance.now(),
+          duration: 1500,
+          radius: 330
+        });
+      });
+    });
+  }
+
+  window.addEventListener("resize", resize, { passive: true });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !reducedMotion && !animationFrame) animationFrame = requestAnimationFrame(draw);
+      if (!isVisible && animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = undefined;
+      }
+    }).observe(hero);
+  }
+  resize();
+}
+
 function updateCountdown() {
   const distance = new Date(`${wedding.isoDate}T00:00:00+05:30`).getTime() - Date.now();
   const values = distance <= 0
@@ -125,5 +280,6 @@ document.addEventListener("keydown", (event) => {
 });
 if (sessionStorage.getItem("std_popup_closed") !== "true") saveDateModal.hidden = false;
 
+initHeroDotGrid();
 updateCountdown();
 setInterval(updateCountdown, 1000);
